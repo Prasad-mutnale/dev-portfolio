@@ -3,6 +3,9 @@ import { PersonalInfo, Skill, Experience, Project, Education, Certificate, Socia
 // Personal information
 export const personalInfo: PersonalInfo = {
   name: "Prasad R Mutnale",
+  firstName: "Prasad",
+  middleName: "R",
+  lastName: "Mutnale",
   title: "Software Engineer",
   phone: "+91 7019943781",
   email: "mutnaleprasad21@gmail.com",

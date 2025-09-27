@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from './ui/card';
-import AnimatedSection from './AnimatedSection';
 
 const About: React.FC = () => {
   return (
@@ -18,7 +17,7 @@ const About: React.FC = () => {
         <div className="container-custom relative z-10">
           <div className="max-w-6xl mx-auto px-4">
             {/* Section Header */}
-            <AnimatedSection animation="fade-in-up" className="text-center mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-foreground">
                 About Me
               </h2>
@@ -26,10 +25,10 @@ const About: React.FC = () => {
               <p className="text-base text-muted-foreground max-w-2xl mx-auto px-4">
                 Learn more about my background, passion, and approach to software development
               </p>
-            </AnimatedSection>
+            </div>
 
             {/* About Content */}
-            <AnimatedSection animation="fade-in-up" delay={200} className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto">
               <Card className="p-6 lg:p-8 text-center border-0 shadow-none">
                 <CardContent className="p-0">
                   <p className="text-base text-muted-foreground leading-relaxed mb-6 font-body">
@@ -44,7 +43,7 @@ const About: React.FC = () => {
                   </p>
                 </CardContent>
               </Card>
-            </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { FaSun, FaMoon, FaBars, FaTimes, FaCode } from 'react-icons/fa';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import { useSmoothScroll } from '../hooks/useSmoothScroll';
-
+import { personalInfo } from '../data/portfolio';
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 <FaCode className="w-4 h-4 lg:w-5 lg:h-5 text-primary-foreground" />
               </div>
               <span className="text-lg lg:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 font-heading">
-                Prasad
+                {personalInfo.firstName}
               </span>
             </div>
 

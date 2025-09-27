@@ -19,9 +19,9 @@ const Hero: React.FC = () => {
         
         {/* Floating geometric shapes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl animate-float"></div>
-          <div className="absolute top-40 right-20 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-float" style={{animationDelay: '2s'}}></div>
-          <div className="absolute bottom-40 left-1/4 w-16 h-16 bg-primary/15 rounded-full blur-lg animate-float" style={{animationDelay: '4s'}}></div>
+          <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
+          <div className="absolute top-40 right-20 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-40 left-1/4 w-16 h-16 bg-primary/15 rounded-full blur-lg"></div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               
               {/* Left Side - Profile Details */}
-              <div className="text-left space-y-6 animate-fade-in">
+              <div className="text-left space-y-6">
                 
                 {/* Profile Image */}
                 <div className="flex justify-start mb-6">
@@ -44,11 +44,11 @@ const Hero: React.FC = () => {
 
                 {/* Name and Title */}
                 <div className="space-y-3">
-                  <h1 className="text-3xl lg:text-5xl xl:text-6xl font-heading font-bold text-foreground leading-tight animate-slide-up">
+                  <h1 className="text-3xl lg:text-5xl xl:text-6xl font-heading font-bold text-foreground leading-tight">
                     {personalInfo.name}
                   </h1>
                   <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-                  <h2 className="text-lg lg:text-xl xl:text-2xl font-heading text-muted-foreground font-medium animate-slide-up" style={{animationDelay: '0.2s'}}>
+                  <h2 className="text-lg lg:text-xl xl:text-2xl font-heading text-muted-foreground font-medium">
                     {personalInfo.title}
                   </h2>
                 </div>
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
 
 
                 {/* Social Links */}
-                <div className="flex space-x-3 animate-slide-up" style={{animationDelay: '0.4s'}}>
+                <div className="flex space-x-3">
                   {socialLinks.map((link) => {
                     const IconComponent = link.icon === 'FaLinkedin' ? FaLinkedin :
                                        link.icon === 'FaGithub' ? FaGithub :
@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 animate-slide-up" style={{animationDelay: '0.6s'}}>
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Button 
                     asChild 
                     size="lg" 
@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Right Side - About Me */}
-              <div className="space-y-6 animate-slide-in-right">
+              <div className="space-y-6">
                 <div className="bg-muted/20 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-border/20">
                   <h3 className="text-2xl lg:text-3xl font-heading font-bold text-foreground mb-4">About Me</h3>
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-body">
@@ -124,8 +124,8 @@ const Hero: React.FC = () => {
                 
                 {/* Additional decorative elements */}
                 <div className="relative h-24 lg:h-32">
-                  <div className="absolute top-0 right-0 w-20 h-20 lg:w-24 lg:h-24 bg-primary/10 rounded-full blur-xl animate-float"></div>
-                  <div className="absolute bottom-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-primary/15 rounded-full blur-lg animate-float" style={{animationDelay: '2s'}}></div>
+                  <div className="absolute top-0 right-0 w-20 h-20 lg:w-24 lg:h-24 bg-primary/10 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-primary/15 rounded-full blur-lg"></div>
                 </div>
               </div>
             </div>

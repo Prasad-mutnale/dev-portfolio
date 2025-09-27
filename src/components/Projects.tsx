@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { projects, personalInfo } from '../data/portfolio';
 import { FaGithub, FaExternalLinkAlt, FaCode, FaStar } from 'react-icons/fa';
 import { Button } from './ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 
 const Projects: React.FC = () => {
