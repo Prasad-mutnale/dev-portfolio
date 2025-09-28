@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
+        <title>Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
         <meta name="description" content="Get in touch with Prasad R Mutnale for collaboration opportunities, job inquiries, and project discussions. Software Engineer at SproutsAI specializing in backend development and API design." />
         <meta name="keywords" content="Contact Prasad Mutnale, Software Engineer Contact, Backend Developer Contact, Full Stack Developer Contact, Job Opportunities, Collaboration, Project Inquiries, Software Development Services, React Developer, Node.js Developer, TypeScript Developer, API Developer, Bangalore Software Engineer" />
         <meta property="og:title" content="Contact Prasad R Mutnale - Software Engineer | Backend Developer" />
