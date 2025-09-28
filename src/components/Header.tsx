@@ -49,8 +49,16 @@ const Header: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Prasad R Mutnale - Software Engineer</title>
-        <meta name="description" content="Results-driven Software Engineer with hands-on experience in full-stack development, LLM integration, and real-time systems." />
+        <title>Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
+        <meta name="description" content="Results-driven Software Engineer with expertise in backend development, API design, and real-time systems. Currently working at SproutsAI with 2+ years of experience in Node.js, Express, TypeScript, and database technologies." />
+        <meta name="keywords" content="Prasad Mutnale, Software Engineer, Backend Developer, Full Stack Developer, React Developer, Node.js Developer, TypeScript, API Developer, SproutsAI, Backend Engineer, Frontend Developer, Web Development, Python, JavaScript, MongoDB, Express, NestJS, Prisma, AWS, Docker, Git, CI/CD, Portfolio, Resume, Bangalore, India" />
+        <meta property="og:title" content="Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="og:description" content="Results-driven Software Engineer with expertise in backend development, API design, and real-time systems. Currently working at SproutsAI with 2+ years of experience." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="twitter:description" content="Results-driven Software Engineer with expertise in backend development, API design, and real-time systems. Currently working at SproutsAI." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app" />
       </Helmet>
       
       <header

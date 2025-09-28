@@ -18,8 +18,16 @@ const Projects: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Projects - Prasad R Mutnale</title>
-        <meta name="description" content="Explore Prasad R Mutnale's portfolio of software development projects and applications." />
+        <title>Projects Portfolio - Prasad R Mutnale | Software Engineer | Backend Developer</title>
+        <meta name="description" content="Explore Prasad R Mutnale's featured projects including backend applications, web development projects, and full-stack solutions. Healthcare admin portal, car decor application, and more." />
+        <meta name="keywords" content="Prasad Mutnale Projects, Software Development Projects, Backend Development Projects, Web Development Projects, React Projects, Node.js Projects, Full Stack Projects, Healthcare Admin Portal, Car Decor Application, Django Projects, MERN Stack Projects, API Development Projects" />
+        <meta property="og:title" content="Projects Portfolio - Prasad R Mutnale | Software Engineer" />
+        <meta property="og:description" content="Explore Prasad R Mutnale's featured projects including backend applications, web development projects, and full-stack solutions. Healthcare admin portal, car decor application, and more." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Projects Portfolio - Prasad R Mutnale | Software Engineer" />
+        <meta property="twitter:description" content="Explore Prasad R Mutnale's featured projects including backend applications, web development projects, and full-stack solutions." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#projects" />
       </Helmet>
       
       <section id="projects" className="py-20 relative overflow-hidden">
@@ -124,7 +132,20 @@ const Projects: React.FC = () => {
                     {/* Project Image */}
                     <div className="relative overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-muted/20 via-primary/20 to-secondary/20 flex items-center justify-center">
-                        <FaCode className="w-16 h-16 text-primary" />
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // Fallback to icon if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.innerHTML = '<div class="flex items-center justify-center w-full h-full"><svg class="w-16 h-16 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg></div>';
+                            }
+                          }}
+                        />
                       </div>
                       <div className="absolute top-4 right-4 flex flex-col gap-2">
                         {project.featured && (
@@ -163,7 +184,7 @@ const Projects: React.FC = () => {
                             {tech}
                           </Badge>
                         ))}
-                        {project.technologies.length > 4 && (
+                        {project.technologies.length > 6&& (
                           <Badge variant="outline" className="px-3 py-1 rounded-full text-sm font-medium">
                             +{project.technologies.length - 4} more
                           </Badge>

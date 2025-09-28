@@ -106,8 +106,16 @@ const Skills: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Skills - Prasad R Mutnale</title>
-        <meta name="description" content="Explore Prasad R Mutnale's technical skills and expertise in various programming languages, frameworks, and tools." />
+        <title>Technical Skills - Prasad R Mutnale | Software Engineer | Backend Developer</title>
+        <meta name="description" content="Explore Prasad R Mutnale's comprehensive technical skills including Node.js, Express, TypeScript, Python, MongoDB, AWS, Docker, and more. 2+ years of experience in backend development and API design." />
+        <meta name="keywords" content="Prasad Mutnale Skills, Technical Skills, Programming Languages, React Skills, Node.js Skills, TypeScript Skills, Python Skills, Backend Development Skills, MongoDB Skills, AWS Skills, Docker Skills, Full Stack Skills, Software Engineer Skills, Developer Skills, Programming Expertise, API Development Skills" />
+        <meta property="og:title" content="Technical Skills - Prasad R Mutnale | Software Engineer" />
+        <meta property="og:description" content="Explore Prasad R Mutnale's comprehensive technical skills including Node.js, Express, TypeScript, Python, MongoDB, AWS, Docker, and more." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Technical Skills - Prasad R Mutnale | Software Engineer" />
+        <meta property="twitter:description" content="Explore Prasad R Mutnale's comprehensive technical skills including Node.js, Express, TypeScript, Python, MongoDB, AWS, Docker, and more." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#skills" />
       </Helmet>
       
           <section id="skills" className="py-20 relative overflow-hidden">

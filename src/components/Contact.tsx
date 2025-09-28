@@ -65,8 +65,16 @@ const Contact: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Contact - Prasad R Mutnale</title>
-        <meta name="description" content="Get in touch with Prasad R Mutnale for collaboration opportunities and inquiries." />
+        <title>Contact Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
+        <meta name="description" content="Get in touch with Prasad R Mutnale for collaboration opportunities, job inquiries, and project discussions. Software Engineer at SproutsAI specializing in backend development and API design." />
+        <meta name="keywords" content="Contact Prasad Mutnale, Software Engineer Contact, Backend Developer Contact, Full Stack Developer Contact, Job Opportunities, Collaboration, Project Inquiries, Software Development Services, React Developer, Node.js Developer, TypeScript Developer, API Developer, Bangalore Software Engineer" />
+        <meta property="og:title" content="Contact Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="og:description" content="Get in touch with Prasad R Mutnale for collaboration opportunities, job inquiries, and project discussions. Software Engineer at SproutsAI specializing in backend development and API design." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Contact Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="twitter:description" content="Get in touch with Prasad R Mutnale for collaboration opportunities, job inquiries, and project discussions." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#contact" />
       </Helmet>
       
       <section id="contact" className="py-20 relative overflow-hidden">

@@ -10,8 +10,16 @@ const Experience: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Experience - Prasad R Mutnale</title>
-        <meta name="description" content="Explore Prasad R Mutnale's professional experience in software development and engineering roles." />
+        <title>Professional Experience - Prasad R Mutnale | Software Engineer | SproutsAI</title>
+        <meta name="description" content="Explore Prasad R Mutnale's professional experience as Software Engineer at SproutsAI, Backend Developer at Abhiyantrik Solutions. 2+ years of experience in backend development, API design, and real-time systems." />
+        <meta name="keywords" content="Prasad Mutnale Experience, Software Engineer Experience, SproutsAI Engineer, Backend Developer Experience, Full Stack Developer Experience, Backend Development Experience, Professional Experience, Software Development Career, React Experience, Node.js Experience, TypeScript Experience, MongoDB Experience, AWS Experience, Docker Experience, API Development Experience" />
+        <meta property="og:title" content="Professional Experience - Prasad R Mutnale | Software Engineer" />
+        <meta property="og:description" content="Explore Prasad R Mutnale's professional experience as Software Engineer at SproutsAI, Backend Developer at Abhiyantrik Solutions. 2+ years of experience in backend development, API design, and real-time systems." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Professional Experience - Prasad R Mutnale | Software Engineer" />
+        <meta property="twitter:description" content="Explore Prasad R Mutnale's professional experience as Software Engineer at SproutsAI, Backend Developer at Abhiyantrik Solutions. 2+ years of experience in backend development, API design, and real-time systems." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#experience" />
       </Helmet>
       
           <section id="experience" className="py-20 relative overflow-hidden">

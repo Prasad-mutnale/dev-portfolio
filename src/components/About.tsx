@@ -6,8 +6,16 @@ const About: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>About - Prasad R Mutnale</title>
-        <meta name="description" content="Learn more about Prasad R Mutnale's background and expertise in software development." />
+        <title>About Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
+        <meta name="description" content="Learn about Prasad R Mutnale's journey as a Software Engineer at SproutsAI. Discover his expertise in backend development, API design, and passion for building scalable solutions." />
+        <meta name="keywords" content="About Prasad Mutnale, Software Engineer Background, Backend Developer Experience, Full Stack Developer Experience, SproutsAI Engineer, Software Development Journey, Technical Expertise, React Developer, Node.js Developer, TypeScript, API Development, Portfolio" />
+        <meta property="og:title" content="About Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="og:description" content="Learn about Prasad R Mutnale's journey as a Software Engineer at SproutsAI. Discover his expertise in backend development, API design, and passion for building scalable solutions." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="About Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="twitter:description" content="Learn about Prasad R Mutnale's journey as a Software Engineer at SproutsAI. Discover his expertise in backend development, API design, and passion for building scalable solutions." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#about" />
       </Helmet>
       
       <section id="about" className="py-20 relative overflow-hidden">

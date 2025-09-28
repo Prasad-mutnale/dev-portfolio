@@ -9,8 +9,16 @@ const Hero: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Prasad R Mutnale - Software Engineer</title>
-        <meta name="description" content={personalInfo.summary} />
+        <title>Prasad R Mutnale - Software Engineer | Backend Developer | Full-Stack Developer</title>
+        <meta name="description" content={`${personalInfo.summary} Explore my portfolio showcasing expertise in backend development, API design, Node.js, Express, TypeScript, and database technologies. Currently working at SproutsAI with 2+ years of experience.`} />
+        <meta name="keywords" content="Prasad Mutnale, Software Engineer, Backend Developer, Full Stack Developer, React Developer, Node.js Developer, TypeScript, API Developer, SproutsAI, Backend Engineer, Frontend Developer, Web Development, Python, JavaScript, MongoDB, Express, NestJS, Prisma, AWS, Docker, Git, CI/CD, Portfolio, Resume, Bangalore, India" />
+        <meta property="og:title" content="Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="og:description" content={`${personalInfo.summary} Explore my portfolio showcasing expertise in backend development, API design, Node.js, Express, TypeScript, and database technologies.`} />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Prasad R Mutnale - Software Engineer | Backend Developer" />
+        <meta property="twitter:description" content={`${personalInfo.summary} Explore my portfolio showcasing expertise in backend development, API design, Node.js, Express, TypeScript, and database technologies.`} />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#home" />
       </Helmet>
       
       <section id="home" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">

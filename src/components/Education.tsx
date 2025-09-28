@@ -9,8 +9,16 @@ const Education: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Education - Prasad R Mutnale</title>
-        <meta name="description" content="Educational background and certifications of Prasad R Mutnale" />
+        <title>Education & Certifications - Prasad R Mutnale | Software Engineer | KLE Tech</title>
+        <meta name="description" content="Explore Prasad R Mutnale's educational background from KLE Technological University (B.E. Computer Science) and professional certifications including Node.js, Backend Development, JavaScript, and AWS Cloud." />
+        <meta name="keywords" content="Prasad Mutnale Education, KLE Technological University, Computer Science Engineering, Software Engineer Education, Professional Certifications, Node.js Certification, Backend Development Certification, JavaScript Certification, AWS Certification, HackerRank, FreeCodeCamp, Codedamn, AWS Educate" />
+        <meta property="og:title" content="Education & Certifications - Prasad R Mutnale | Software Engineer" />
+        <meta property="og:description" content="Explore Prasad R Mutnale's educational background from KLE Technological University (B.E. Computer Science) and professional certifications including Node.js, Backend Development, JavaScript, and AWS Cloud." />
+        <meta property="og:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <meta property="twitter:title" content="Education & Certifications - Prasad R Mutnale | Software Engineer" />
+        <meta property="twitter:description" content="Explore Prasad R Mutnale's educational background from KLE Technological University and professional certifications." />
+        <meta property="twitter:image" content="https://prasad-mutnale.vercel.app/profile.png" />
+        <link rel="canonical" href="https://prasad-mutnale.vercel.app/#education" />
       </Helmet>
       
       <section id="education" className="py-20 relative overflow-hidden">

@@ -11,7 +11,7 @@ export const personalInfo: PersonalInfo = {
   email: "mutnaleprasad21@gmail.com",
   linkedin: "https://linkedin.com/in/prasad-mutnale/",
   github: "https://github.com/Prasad-mutnale/",
-  summary: "Currently working as a Software Engineer at Sprouts AI, focusing on backend API development and fixing production bugs in the Sprouts ATS platform."
+  summary: "Currently working as a Software Engineer at Sprouts AI, focusing on backend API development, database optimization, and fixing production bugs in the Sprouts ATS platform."
 };
 
 // Technical skills
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     title: "Smart System for Lung Cancer Detection",
     description: "Built an image classifier with ResNet-50, achieving 90% accuracy on 1,400 CT scans.",
     longDescription: "Developed a comprehensive medical imaging solution using deep learning to detect lung cancer from CT scans. The system combines ResNet-50 architecture with a Django-React interface for seamless diagnostic experience.",
-    image: "/api/placeholder/600/400",
+    image: "/lung-cancer-project.png",
     technologies: ["Django", "React", "ResNet-50", "Python", "TensorFlow"],
     githubUrl: "https://github.com/Prasad-mutnale/Lung-Cancer-Detection-Web-App",
     featured: true,
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     title: "Video-Based Yoga Pose Detection",
     description: "Developed an 81%-precision LRCN model to detect yoga poses from video.",
     longDescription: "Created an advanced computer vision system using CNN + LSTM architecture for real-time yoga pose detection. The project was published in IEEE I2CT Conference and demonstrates expertise in video processing and deep learning.",
-    image: "/api/placeholder/600/400",
+    image: "/yoga-pose.png",
     technologies: ["CNN", "LSTM", "Django", "Python", "OpenCV", "TensorFlow"],
     githubUrl: "https://github.com/Prasad-mutnale/Video-Based-Yoga-Pose-Detection",
     featured: true,
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     title: "Healthcare Facility Admin Portal",
     description: "Built full-stack system to manage student-doctor appointments, reducing manual workload by 40%.",
     longDescription: "Developed a comprehensive MERN stack application for healthcare facility management. The system automates doctor assignment and notification workflows, significantly improving operational efficiency.",
-    image: "/api/placeholder/600/400",
+    image: "/health-care-dashboard.png",
     technologies: ["MongoDB", "Express", "React", "Node.js", "JWT", "Bootstrap"],
     githubUrl: "https://github.com/Prasad-mutnale/KLE-Tech-Healthcare-Facility-Administration",
     featured: true,
@@ -140,7 +140,7 @@ export const projects: Project[] = [
     title: "Car Decor Simulation",
     description: "Created modular C++ app using Factory and Singleton patterns for car customization.",
     longDescription: "Built a desktop application demonstrating object-oriented programming principles and design patterns. The application allows users to customize car decorations with a modular, extensible architecture.",
-    image: "/api/placeholder/600/400",
+    image: "/car-decor-application.png",
     technologies: ["C++", "Design Patterns", "Factory Pattern", "Singleton Pattern"],
     githubUrl: "https://github.com/Prasad-mutnale/Car-Decor-Application",
     featured: false,
