@@ -223,26 +223,38 @@ const Contact: React.FC = () => {
                         <h4 className="text-xl font-semibold text-foreground mb-2">
                           Message Sent Successfully!
                         </h4>
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground mb-4">
                           Thank you for your message. I'll get back to you within 24 hours!
                         </p>
+                        
+                        {/* Rate limit warning after successful send */}
+                        {rateLimitState.attemptsLeft === 0 && (
+                          <div className="flex items-center justify-center gap-2 text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-3 rounded-lg mb-4">
+                            <FaShieldAlt className="w-4 h-4" />
+                            <span>Rate limit reached - please try again after 24 hours</span>
+                          </div>
+                        )}
                       </div>
                     ) : submitError ? (
                       <div className="text-center py-8">
                         <FaExclamationTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
                         <h4 className="text-xl font-semibold text-foreground mb-2">
-                          {rateLimitState.isBlocked ? 'Rate Limit Exceeded' : 'Error Sending Message'}
+                          {rateLimitState.isBlocked ? 'Rate Limit Reached' : 'Error Sending Message'}
                         </h4>
                         <p className="text-muted-foreground mb-4">
-                          {submitError}
+                          {rateLimitState.isBlocked 
+                            ? 'You have already sent a message. Please try again after 24 hours.'
+                            : submitError
+                          }
                         </p>
                         <div className="flex gap-3 justify-center">
                           <Button 
                             onClick={() => setSubmitError(null)}
                             variant="outline"
                             className="mt-4"
+                            disabled={rateLimitState.isBlocked}
                           >
-                            Try Again
+                            {rateLimitState.isBlocked ? 'Rate Limit Reached' : 'Try Again'}
                           </Button>
                           {rateLimitState.isBlocked && (
                             <Button 
@@ -321,18 +333,6 @@ const Contact: React.FC = () => {
                           />
                         </div>
 
-                        {/* Rate limiting status indicator */}
-                        {rateLimitState.attemptsLeft !== undefined && rateLimitState.attemptsLeft < 3 && (
-                          <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
-                            <FaShieldAlt className="w-4 h-4" />
-                            <span>
-                              {rateLimitState.attemptsLeft > 0 
-                                ? `${rateLimitState.attemptsLeft} attempt${rateLimitState.attemptsLeft === 1 ? '' : 's'} remaining`
-                                : 'Rate limit reached'
-                              }
-                            </span>
-                          </div>
-                        )}
 
                         <Button
                           type="submit"
@@ -356,6 +356,13 @@ const Contact: React.FC = () => {
                             </>
                           )}
                         </Button>
+                        
+                        {/* Rate limit message below button */}
+                        {rateLimitState.isBlocked && (
+                          <p className="text-sm text-red-600 dark:text-red-400 text-center mt-2">
+                            Please try again after 24 hours
+                          </p>
+                        )}
                       </form>
                     )}
 

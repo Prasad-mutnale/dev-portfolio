@@ -47,6 +47,24 @@ export const useRateLimit = () => {
   }, []);
 
   /**
+   * Block the current user after successful email sending
+   */
+  const blockAfterSuccess = useCallback(() => {
+    try {
+      const clientIP = rateLimiter.getClientIP();
+      rateLimiter.blockAfterSuccess(clientIP);
+      
+      setRateLimitState({
+        isAllowed: false,
+        isBlocked: true,
+        remainingTime: 24 * 60 * 60 * 1000, // 24 hours
+      });
+    } catch (error) {
+      console.error('Failed to block after success:', error);
+    }
+  }, []);
+
+  /**
    * Format remaining time for display
    */
   const formatRemainingTime = useCallback((ms: number): string => {
@@ -67,10 +85,10 @@ export const useRateLimit = () => {
     
     if (rateLimitState.remainingTime) {
       const timeStr = formatRemainingTime(rateLimitState.remainingTime);
-      return `Too many attempts. Please try again in ${timeStr}.`;
+      return `Rate limit has reached. Please try again in ${timeStr}.`;
     }
     
-    return 'Too many attempts. Please try again later.';
+    return 'Rate limit has reached. Please try again after 24 hours.';
   }, [rateLimitState, formatRemainingTime]);
 
   /**
@@ -88,6 +106,7 @@ export const useRateLimit = () => {
   return {
     rateLimitState,
     checkRateLimit,
+    blockAfterSuccess,
     formatRemainingTime,
     getRateLimitMessage,
     resetRateLimit,

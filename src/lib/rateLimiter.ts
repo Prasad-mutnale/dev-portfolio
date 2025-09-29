@@ -16,12 +16,12 @@ interface RateLimitConfig {
   blockDurationMs: number; // How long to block after exceeding limit
 }
 
-// Default rate limiting configuration
-const DEFAULT_CONFIG: RateLimitConfig = {
-  maxAttempts: 3, // Allow 3 attempts
-  windowMs: 15 * 60 * 1000, // 15 minutes window
-  blockDurationMs: 24 * 60 * 60 * 1000, // Block for 24 hours after exceeding limit
-};
+  // Default rate limiting configuration
+  const DEFAULT_CONFIG: RateLimitConfig = {
+    maxAttempts: 1, // Allow only 1 attempt (block on 2nd)
+    windowMs: 15 * 60 * 1000, // 15 minutes window
+    blockDurationMs: 24 * 60 * 60 * 1000, // Block for 24 hours after exceeding limit
+  };
 
 class RateLimiter {
   private entries: Map<string, RateLimitEntry> = new Map();
@@ -85,9 +85,20 @@ class RateLimiter {
     if (entry.count < this.config.maxAttempts) {
       entry.count++;
       entry.lastAttempt = now;
+      
+      // If this exceeds the limit (2nd attempt), block immediately
+      if (entry.count > this.config.maxAttempts) {
+        entry.blocked = true;
+        return { 
+          allowed: false, 
+          remainingTime: this.config.blockDurationMs 
+        };
+      }
+      
+      // This is the 1st and only allowed attempt
       return { 
         allowed: true, 
-        attemptsLeft: this.config.maxAttempts - entry.count 
+        attemptsLeft: 0 // No more attempts after this
       };
     }
 
@@ -98,6 +109,26 @@ class RateLimiter {
       allowed: false, 
       remainingTime: this.config.blockDurationMs 
     };
+  }
+
+  /**
+   * Block an IP address after successful email sending
+   * @param ip - IP address to block
+   */
+  blockAfterSuccess(ip: string): void {
+    const entry = this.entries.get(ip);
+    if (entry) {
+      entry.blocked = true;
+      entry.lastAttempt = Date.now();
+    } else {
+      // Create new entry and block it
+      this.entries.set(ip, {
+        count: this.config.maxAttempts,
+        firstAttempt: Date.now(),
+        lastAttempt: Date.now(),
+        blocked: true,
+      });
+    }
   }
 
   /**

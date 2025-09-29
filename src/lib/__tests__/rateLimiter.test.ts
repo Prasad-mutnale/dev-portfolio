@@ -13,75 +13,74 @@ describe('RateLimiter', () => {
     });
   });
 
-  it('should allow requests within the limit', () => {
+  it('should allow only one request', () => {
     const ip = '192.168.1.1';
     
-    // First request should be allowed
+    // First request should be allowed (only attempt)
     const result1 = rateLimiter.checkRateLimit(ip);
     expect(result1.allowed).toBe(true);
-    expect(result1.attemptsLeft).toBe(2);
+    expect(result1.attemptsLeft).toBe(0);
 
-    // Second request should be allowed
+    // Second request should block the user immediately
     const result2 = rateLimiter.checkRateLimit(ip);
-    expect(result2.allowed).toBe(true);
-    expect(result2.attemptsLeft).toBe(1);
-
-    // Third request should be allowed
-    const result3 = rateLimiter.checkRateLimit(ip);
-    expect(result3.allowed).toBe(true);
-    expect(result3.attemptsLeft).toBe(0);
+    expect(result2.allowed).toBe(false);
+    expect(result2.remainingTime).toBeDefined();
   });
 
-  it('should block requests after exceeding the limit', () => {
+  it('should block requests after the single attempt', () => {
     const ip = '192.168.1.1';
     
-    // Make 3 requests (the limit)
-    for (let i = 0; i < 3; i++) {
-      const result = rateLimiter.checkRateLimit(ip);
-      expect(result.allowed).toBe(true);
-    }
+    // First request should be allowed (only attempt)
+    const result1 = rateLimiter.checkRateLimit(ip);
+    expect(result1.allowed).toBe(true);
+    expect(result1.attemptsLeft).toBe(0);
 
-    // Fourth request should be blocked
-    const result = rateLimiter.checkRateLimit(ip);
-    expect(result.allowed).toBe(false);
-    expect(result.remainingTime).toBeDefined();
+    // Second request should block immediately
+    const result2 = rateLimiter.checkRateLimit(ip);
+    expect(result2.allowed).toBe(false);
+    expect(result2.remainingTime).toBeDefined();
+
+    // Third request should also be blocked
+    const result3 = rateLimiter.checkRateLimit(ip);
+    expect(result3.allowed).toBe(false);
+    expect(result3.remainingTime).toBeDefined();
   });
 
   it('should reset counter after window expires', () => {
     const ip = '192.168.1.1';
     
-    // Make 3 requests to reach the limit
-    for (let i = 0; i < 3; i++) {
-      rateLimiter.checkRateLimit(ip);
-    }
+    // First request should be allowed (only attempt)
+    const result1 = rateLimiter.checkRateLimit(ip);
+    expect(result1.allowed).toBe(true);
+    expect(result1.attemptsLeft).toBe(0);
 
-    // Should be blocked
-    let result = rateLimiter.checkRateLimit(ip);
-    expect(result.allowed).toBe(false);
+    // Second request should block
+    const result2 = rateLimiter.checkRateLimit(ip);
+    expect(result2.allowed).toBe(false);
 
     // Create a new rate limiter with a very short window to simulate expiry
     const shortWindowLimiter = new RateLimiter({
-      maxAttempts: 3,
+      maxAttempts: 1,
       windowMs: 100, // 100ms window
       blockDurationMs: 50, // 50ms block duration
     });
 
-    // Make 3 requests to reach the limit
-    for (let i = 0; i < 3; i++) {
-      shortWindowLimiter.checkRateLimit(ip);
-    }
+    // First request should be allowed (only attempt)
+    const result3 = shortWindowLimiter.checkRateLimit(ip);
+    expect(result3.allowed).toBe(true);
+    expect(result3.attemptsLeft).toBe(0);
 
-    // Should be blocked
-    result = shortWindowLimiter.checkRateLimit(ip);
-    expect(result.allowed).toBe(false);
+    // Second request should block
+    const result4 = shortWindowLimiter.checkRateLimit(ip);
+    expect(result4.allowed).toBe(false);
 
     // Wait for window to expire (100ms + buffer)
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         // Should be allowed again after window expires
-        result = shortWindowLimiter.checkRateLimit(ip);
-        expect(result.allowed).toBe(true);
-        expect(result.attemptsLeft).toBe(2);
+        const result5 = shortWindowLimiter.checkRateLimit(ip);
+        expect(result5.allowed).toBe(true);
+        expect(result5.attemptsLeft).toBe(0);
         resolve();
       }, 150);
     });
@@ -91,39 +90,40 @@ describe('RateLimiter', () => {
     const ip1 = '192.168.1.1';
     const ip2 = '192.168.1.2';
     
-    // Make 3 requests from IP1
-    for (let i = 0; i < 3; i++) {
-      rateLimiter.checkRateLimit(ip1);
-    }
+    // First request from IP1 should be allowed (only attempt)
+    const result1 = rateLimiter.checkRateLimit(ip1);
+    expect(result1.allowed).toBe(true);
+    expect(result1.attemptsLeft).toBe(0);
 
-    // IP1 should be blocked
-    let result1 = rateLimiter.checkRateLimit(ip1);
-    expect(result1.allowed).toBe(false);
+    // Second request from IP1 should block it
+    const result2 = rateLimiter.checkRateLimit(ip1);
+    expect(result2.allowed).toBe(false);
 
-    // IP2 should still be allowed
-    let result2 = rateLimiter.checkRateLimit(ip2);
-    expect(result2.allowed).toBe(true);
-    expect(result2.attemptsLeft).toBe(2);
+    // IP2 should still be allowed (only attempt)
+    const result3 = rateLimiter.checkRateLimit(ip2);
+    expect(result3.allowed).toBe(true);
+    expect(result3.attemptsLeft).toBe(0);
   });
 
   it('should reset rate limit for specific IP', () => {
     const ip = '192.168.1.1';
     
-    // Make 3 requests to reach the limit
-    for (let i = 0; i < 3; i++) {
-      rateLimiter.checkRateLimit(ip);
-    }
+    // First request should be allowed (only attempt)
+    const result1 = rateLimiter.checkRateLimit(ip);
+    expect(result1.allowed).toBe(true);
+    expect(result1.attemptsLeft).toBe(0);
 
-    // Should be blocked
-    let result = rateLimiter.checkRateLimit(ip);
-    expect(result.allowed).toBe(false);
+    // Second request should block
+    const result2 = rateLimiter.checkRateLimit(ip);
+    expect(result2.allowed).toBe(false);
 
     // Reset the IP
     rateLimiter.reset(ip);
 
-    // Should be allowed again
-    result = rateLimiter.checkRateLimit(ip);
-    expect(result.allowed).toBe(true);
-    expect(result.attemptsLeft).toBe(2);
+    // Should be allowed again (only attempt)
+    const result3 = rateLimiter.checkRateLimit(ip);
+    expect(result3.allowed).toBe(true);
+    expect(result3.attemptsLeft).toBe(0);
   });
+
 });
