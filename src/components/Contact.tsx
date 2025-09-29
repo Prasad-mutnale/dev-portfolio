@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { personalInfo, socialLinks } from '../data/portfolio';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaLinkedin, FaGithub, FaExclamationTriangle } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaLinkedin, FaGithub, FaExclamationTriangle, FaClock, FaShieldAlt } from 'react-icons/fa';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { sendEmail } from '../lib/emailjs';
+import { useRateLimit } from '../hooks/useRateLimit';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,14 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  
+  // Rate limiting hook
+  const { 
+    rateLimitState, 
+    checkRateLimit, 
+    getRateLimitMessage, 
+    resetRateLimit 
+  } = useRateLimit();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -33,6 +42,15 @@ const Contact: React.FC = () => {
     setSubmitError(null);
 
     try {
+      // Check rate limit before processing the form
+      const isAllowed = await checkRateLimit();
+      
+      if (!isAllowed) {
+        setSubmitError(getRateLimitMessage());
+        setIsSubmitting(false);
+        return;
+      }
+
       const emailData = {
         from_name: formData.name,
         from_email: formData.email,
@@ -213,18 +231,32 @@ const Contact: React.FC = () => {
                       <div className="text-center py-8">
                         <FaExclamationTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
                         <h4 className="text-xl font-semibold text-foreground mb-2">
-                          Error Sending Message
+                          {rateLimitState.isBlocked ? 'Rate Limit Exceeded' : 'Error Sending Message'}
                         </h4>
                         <p className="text-muted-foreground mb-4">
                           {submitError}
                         </p>
-                        <Button 
-                          onClick={() => setSubmitError(null)}
-                          variant="outline"
-                          className="mt-4"
-                        >
-                          Try Again
-                        </Button>
+                        <div className="flex gap-3 justify-center">
+                          <Button 
+                            onClick={() => setSubmitError(null)}
+                            variant="outline"
+                            className="mt-4"
+                          >
+                            Try Again
+                          </Button>
+                          {rateLimitState.isBlocked && (
+                            <Button 
+                              onClick={() => {
+                                resetRateLimit();
+                                setSubmitError(null);
+                              }}
+                              variant="outline"
+                              className="mt-4"
+                            >
+                              Reset Rate Limit
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="space-y-6">
@@ -289,15 +321,33 @@ const Contact: React.FC = () => {
                           />
                         </div>
 
+                        {/* Rate limiting status indicator */}
+                        {rateLimitState.attemptsLeft !== undefined && rateLimitState.attemptsLeft < 3 && (
+                          <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
+                            <FaShieldAlt className="w-4 h-4" />
+                            <span>
+                              {rateLimitState.attemptsLeft > 0 
+                                ? `${rateLimitState.attemptsLeft} attempt${rateLimitState.attemptsLeft === 1 ? '' : 's'} remaining`
+                                : 'Rate limit reached'
+                              }
+                            </span>
+                          </div>
+                        )}
+
                         <Button
                           type="submit"
-                          disabled={isSubmitting || !formData.name || !formData.email || !formData.subject || !formData.message}
+                          disabled={isSubmitting || !formData.name || !formData.email || !formData.subject || !formData.message || rateLimitState.isBlocked}
                           className="group relative overflow-hidden w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold py-4 rounded-full shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300"
                         >
                           {isSubmitting ? (
                             <>
                               <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
                               Sending Message...
+                            </>
+                          ) : rateLimitState.isBlocked ? (
+                            <>
+                              <FaClock className="w-4 h-4" />
+                              Rate Limited
                             </>
                           ) : (
                             <>
